@@ -2,6 +2,7 @@ import argparse
 import base64
 import json
 import mimetypes
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -10,7 +11,7 @@ from pathlib import Path
 API_KEY = "sk-ytjoldSoalyUQAWqUkQ6Zle7mgtsDVcWKImdZyhooJbZw8GR"
 BASE_URL = "https://ieuwbn-123ghiuueiud1-great.onrender.com/v1"
 MODEL = "gemma-4-31b-it"
-TIMEOUT = 90.0
+TIMEOUT = 45.0
 VERBOSE = True
 
 
@@ -141,7 +142,18 @@ def normalize_y_n(content):
     raise ValueError(f"Model did not return y/n: {content!r}")
 
 
-def check_image(rule, image_path):
+def check_image(rule, image_path, max_retries=3, retry_delay=2.0):
+    """Check an image against a rule with automatic retry on transient failures.
+
+    Args:
+        rule: The inspection rule text.
+        image_path: Path to the image file.
+        max_retries: Maximum number of retry attempts (default 3).
+        retry_delay: Base delay in seconds between retries; doubles each attempt.
+
+    Returns:
+        "y" or "n", or None if all retries fail.
+    """
     encoded_image, mime_type = encode_image(image_path)
     prompt = build_prompt(rule)
     messages = [
@@ -156,8 +168,23 @@ def check_image(rule, image_path):
             ],
         }
     ]
-    content = call_chat_completion(messages, max_tokens=3)
-    return normalize_y_n(content)
+
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            content = call_chat_completion(messages, max_tokens=5)
+            return normalize_y_n(content)
+        except (RuntimeError, ValueError) as exc:
+            last_error = exc
+            if attempt < max_retries - 1:
+                delay = retry_delay * (2 ** attempt)
+                if VERBOSE:
+                    print(f"  Retry {attempt + 1}/{max_retries} after {delay:.1f}s: {exc}")
+                time.sleep(delay)
+
+    if VERBOSE:
+        print(f"  All {max_retries} retries failed: {last_error}")
+    return None
 
 
 def build_arg_parser():
@@ -193,6 +220,9 @@ def main():
 
     rule = read_rule(args.rules_file)
     answer = check_image(rule, image)
+    if answer is None:
+        print("error: all retries failed")
+        raise SystemExit(1)
     print(answer)
 
 
