@@ -1,0 +1,5 @@
+__pycache__/
+.omo/
+mvtec_anomaly_detection/
+mvtec_loco_anomaly_detection/
+VisA_20220922/
