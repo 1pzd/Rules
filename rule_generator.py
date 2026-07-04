@@ -21,14 +21,10 @@ import time
 from pathlib import Path
 from urllib import request, error
 
-# CoEvoSkills: import checker for verification loop
-from rule_checker import check_image as checker_check_image
+# CoEvoSkills: import checker configuration and verification function
+from rule_checker import API_KEY, BASE_URL, MODEL, TIMEOUT, check_image as checker_check_image
 
 # ========== CONFIGURATION ==========
-API_KEY = "sk-ytjoldSoalyUQAWqUkQ6Zle7mgtsDVcWKImdZyhooJbZw8GR"
-BASE_URL = "https://ieuwbn-123ghiuueiud1-great.onrender.com/v1"
-MODEL = "gemma-4-31b-it"
-TIMEOUT = 45.0
 SAMPLES_PER_CATEGORY = 3
 RULES_PER_CATEGORY = 3  # Trace2Skill: generate N rules with different images, then consolidate
 OUTPUT_FILE = "generated_rules.json"
@@ -41,11 +37,13 @@ VERIFICATION_MIN_ACCURACY = 0.8   # Minimum accuracy threshold (80%)
 VERIFICATION_MAX_ITERATIONS = 2   # Max generate-verify-refine iterations
 VERIFICATION_TEST_PER_CLASS = 2   # Number of good + bad test images per verification
 
-# Dataset roots - UPDATE THESE PATHS WHEN YOU HAVE THE DATASETS
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+# Dataset roots
 DATASET_ROOTS = {
-    "mvtec_ad": r"E:\MvTeC\mvtec_anomaly_detection",
-    "mvtec_loco": r"E:\MvTeC\mvtec_loco_anomaly_detection",
-    "visa": r"E:\MvTeC\VisA_20220922\VisA_20220922",
+    "mvtec_ad": str(SCRIPT_DIR / "mvtec_anomaly_detection"),
+    "mvtec_loco": str(SCRIPT_DIR / "mvtec_loco_anomaly_detection"),
+    "visa": str(SCRIPT_DIR / "VisA_20220922" / "VisA_20220922"),
 }
 
 # MVTec AD categories (15 industrial objects)
@@ -448,15 +446,16 @@ def generate_rule_for_category(
         final_rule = candidates[0]
 
     # CoEvoSkills: Verify and refine loop
+    current_rule = final_rule
     best_rule = final_rule
-    best_accuracy = 0.0
+    best_accuracy = -1.0
     verification_history = []
     if VERIFICATION_ENABLED and final_rule:
 
         for verify_iter in range(VERIFICATION_MAX_ITERATIONS):
             print(f"  [{dataset_name}/{category}] Verification round {verify_iter + 1}/{VERIFICATION_MAX_ITERATIONS}...", flush=True)
             accuracy, problems = verify_rule(
-                best_rule, dataset_root, category, dataset_name, VERIFICATION_TEST_PER_CLASS
+                current_rule, dataset_root, category, dataset_name, VERIFICATION_TEST_PER_CLASS
             )
             verification_history.append({"iteration": verify_iter + 1, "accuracy": accuracy, "problems": problems})
 
@@ -467,6 +466,7 @@ def generate_rule_for_category(
 
             if accuracy > best_accuracy:
                 best_accuracy = accuracy
+                best_rule = current_rule
 
             if accuracy >= VERIFICATION_MIN_ACCURACY:
                 print(f"  [{dataset_name}/{category}] Verification PASSED at round {verify_iter + 1}", flush=True)
@@ -474,9 +474,9 @@ def generate_rule_for_category(
 
             if verify_iter < VERIFICATION_MAX_ITERATIONS - 1:
                 print(f"  [{dataset_name}/{category}] Refining rule based on failures...", flush=True)
-                refined = refine_rule(f"{dataset_name}/{category}", best_rule, problems)
+                refined = refine_rule(f"{dataset_name}/{category}", current_rule, problems)
                 if refined:
-                    best_rule = refined
+                    current_rule = refined
                     if VERBOSE:
                         print(f"  [{dataset_name}/{category}] Refined rule preview: {refined[:150]}...", flush=True)
                 else:
@@ -640,7 +640,7 @@ def main() -> int:
         result = generate_rule_for_category(dataset_name, category, dataset_root)
         
         if result["status"] == "success" and result.get("rule"):
-            print(f"\nRule generated successfully!", flush=True)
+            print("\nRule generated successfully!", flush=True)
             print(f"Rule: {result['rule']}", flush=True)
             if result.get("verification"):
                 print(f"Verification rounds: {len(result['verification'])}", flush=True)

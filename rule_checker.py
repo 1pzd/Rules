@@ -2,6 +2,7 @@ import argparse
 import base64
 import json
 import mimetypes
+import re
 import time
 import urllib.error
 import urllib.request
@@ -13,6 +14,13 @@ BASE_URL = "https://ieuwbn-123ghiuueiud1-great.onrender.com/v1"
 MODEL = "gemma-4-31b-it"
 TIMEOUT = 45.0
 VERBOSE = True
+
+DATASET_HEADING_KEYS = {
+    "MVTec AD": "mvtec_ad",
+    "MVTec LOCO AD": "mvtec_loco",
+    "VisA": "visa",
+}
+RULE_LINE_RE = re.compile(r"^\s*\d+\.\s+([^:]+):\s*(.+)\s*$")
 
 
 CHECK_PROMPT = """You are an industrial quality inspection expert. Analyze this image and decide whether it conforms to the single provided inspection rule.
@@ -118,15 +126,71 @@ def verify_api_connection():
         print(f"API verification response: {content}")
 
 
-def read_rule(rules_file):
+def normalize_rule_key(rule_key):
+    if "/" not in rule_key:
+        raise ValueError("--rule-key must use dataset/category format, for example mvtec_ad/bottle")
+    dataset, category = rule_key.split("/", 1)
+    dataset = dataset.strip().lower()
+    category = category.strip()
+    if not dataset or not category:
+        raise ValueError("--rule-key must use dataset/category format, for example mvtec_ad/bottle")
+    return f"{dataset}/{category}"
+
+
+def parse_rules_txt(text):
+    rules = {}
+    current_dataset = None
+    found_heading = False
+    last_key = None
+
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        if line in DATASET_HEADING_KEYS:
+            current_dataset = DATASET_HEADING_KEYS[line]
+            found_heading = True
+            last_key = None
+            continue
+        if current_dataset is None:
+            continue
+
+        match = RULE_LINE_RE.match(line)
+        if match:
+            category = match.group(1).strip()
+            rule = match.group(2).strip()
+            last_key = f"{current_dataset}/{category}"
+            rules[last_key] = rule
+        elif last_key:
+            rules[last_key] = f"{rules[last_key]} {line}"
+
+    return found_heading, rules
+
+
+def read_rule(rules_file, rule_key=None):
     path = Path(rules_file)
     if not path.exists():
         raise FileNotFoundError(f"Rule file not found: {path}")
 
-    rule = path.read_text(encoding="utf-8").strip()
-    if not rule:
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
         raise ValueError(f"Rule file is empty: {path}")
-    return rule
+
+    found_heading, rules = parse_rules_txt(text)
+    if not found_heading:
+        return text
+
+    if not rule_key:
+        raise ValueError(
+            "Rule file contains multiple dataset/category rules; pass --rule-key dataset/category "
+            "(for example mvtec_ad/bottle)."
+        )
+
+    key = normalize_rule_key(rule_key)
+    if key not in rules:
+        available = ", ".join(sorted(rules))
+        raise ValueError(f"Rule key not found: {key}. Available keys: {available}")
+    return rules[key]
 
 
 def build_prompt(rule):
@@ -189,14 +253,18 @@ def check_image(rule, image_path, max_retries=3, retry_delay=2.0):
 
 def build_arg_parser():
     parser = argparse.ArgumentParser(
-        description="Check one image against the single rule in rules_detected.txt and print y or n."
+        description="Check one image against an inspection rule and print y or n."
     )
     parser.add_argument("image", nargs="?", help="Image path to check.")
     parser.add_argument("--image", dest="image_option", help="Image path to check.")
     parser.add_argument(
         "--rules-file",
-        default="rules_detected.txt",
-        help="Single-rule text file to read. Defaults to rules_detected.txt.",
+        default="Rules.txt",
+        help="Rule file to read. Defaults to Rules.txt.",
+    )
+    parser.add_argument(
+        "--rule-key",
+        help="Dataset/category key to extract from a multi-rule Rules.txt file, for example mvtec_ad/bottle.",
     )
     parser.add_argument("--verify", action="store_true", help="Verify the API with a text-only request before checking the image.")
     parser.add_argument("--skip-verify", action="store_true", help="Skip API verification even when --verify is set.")
@@ -218,7 +286,7 @@ def main():
     if args.verify and not args.skip_verify:
         verify_api_connection()
 
-    rule = read_rule(args.rules_file)
+    rule = read_rule(args.rules_file, args.rule_key)
     answer = check_image(rule, image)
     if answer is None:
         print("error: all retries failed")
