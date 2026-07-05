@@ -3,3 +3,7 @@ __pycache__/
 mvtec_anomaly_detection/
 mvtec_loco_anomaly_detection/
 VisA_20220922/
+
+# Cache files
+*.pkl
+baseline_results/cache/

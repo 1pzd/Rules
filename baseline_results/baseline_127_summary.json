@@ -1,0 +1,19 @@
+{
+  "source_evaluation_file": "E:\\rules\\Rules\\evaluation_results.json",
+  "input_total": 127,
+  "threshold_policy": "per_method_dataset_category_target_f1",
+  "methods": {
+    "PaDiM": {
+      "total": 127,
+      "correct": 119,
+      "accuracy": 0.937007874015748,
+      "output_csv": "baseline_results\\padim_127_image_scores.csv"
+    },
+    "SPADE": {
+      "total": 127,
+      "correct": 118,
+      "accuracy": 0.9291338582677166,
+      "output_csv": "baseline_results\\spade_127_image_scores.csv"
+    }
+  }
+}

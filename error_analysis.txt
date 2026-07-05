@@ -1,0 +1,14 @@
+wrong: 13/127
+mvtec_ad/capsule/faulty_imprint expected=abnormal got=n
+mvtec_ad/pill/scratch expected=abnormal got=n
+mvtec_ad/screw/thread_side expected=abnormal got=n
+mvtec_ad/screw/thread_top expected=abnormal got=n
+mvtec_ad/tile/gray_stroke expected=abnormal got=n
+mvtec_ad/zipper/combined expected=abnormal got=n
+mvtec_ad/zipper/squeezed_teeth expected=abnormal got=n
+mvtec_loco/pushpins/structural_anomalies expected=abnormal got=n
+mvtec_loco/splicing_connectors/good expected=normal got=n
+mvtec_loco/splicing_connectors/structural_anomalies expected=abnormal got=n
+visa/candle/Anomaly expected=abnormal got=n
+visa/pcb1/Anomaly expected=abnormal got=n
+visa/pcb2/Anomaly expected=abnormal got=n
