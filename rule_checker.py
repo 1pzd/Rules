@@ -144,12 +144,20 @@ class EvaluationCase:
     image_path: Path
 
 
-CHECK_PROMPT = """You are an industrial quality inspection expert. Analyze this image and decide whether it conforms to the single provided inspection rule.
+@dataclass(frozen=True)
+class ClassificationResult:
+    answer: str
+    observation: str
+    reason: str
+    raw_response: str
+
+
+CHECK_PROMPT = """You are an industrial visual inspection judge. Decide whether the image visibly matches the target condition described by the provided inspection rule.
 
 Inspection rule:
 {rule}
 
-Your task: Determine whether the visible image content satisfies the inspection rule.
+Your task: Determine whether the target condition is present and visually verifiable in the image.
 
 Focus on these aspects when they are relevant to the rule:
 1. APPEARANCE: Shape, color, texture, surface finish, transparency, patterns
@@ -158,29 +166,35 @@ Focus on these aspects when they are relevant to the rule:
 
 Requirements:
 - Use only the provided inspection rule as the decision standard
-- Judge only the object content visible in the image
-- If the image satisfies the rule, answer y
-- If the image does not satisfy the rule, answer n
+- Use only visible evidence from the image
+- Answer y if the image clearly matches the target condition described by the rule
+- Answer n if the target condition is absent, contradicted, or not visually verifiable
+- Ignore background, lighting, camera angle, blur, and image quality unless the rule explicitly mentions them
+- Do not infer from file names, dataset knowledge, or prior expectations
 - Do not explain your reasoning
 - Do not return punctuation, markdown, or any other text
 
 Output format: exactly one lowercase letter: y or n."""
 
 
-CLASSIFICATION_PROMPT = """You are an industrial quality inspection expert. Your task is to determine whether the condition described by the inspection rule is present and visible in this image.
+CLASSIFICATION_PROMPT = """You are an industrial visual inspection judge. Decide whether the image visibly matches the target condition described by the provided inspection rule, and explain the visual basis for your decision.
 
 Inspection rule:
 {rule}
 
-Step 1 - Analyze: Carefully examine the image. Describe what you see, focusing on the specific features mentioned in the rule. Note any abnormalities, defects, or conditions that match or contradict the rule.
+Step 1 - Observe: Carefully examine the image. Describe only the visible features that are relevant to the rule, including appearance, spatial relationships, quantity, defects, or missing/extra parts when applicable.
 
-Step 2 - Decide: Based on your analysis, determine whether the condition described by the rule is present in the image.
-- If the condition is clearly present, answer y
-- If the condition is clearly absent, answer n
-- If unsure, lean towards answering y (detecting the condition)
+Step 2 - Reason: Explain whether those visible features match, contradict, or fail to verify the target condition described by the rule.
+
+Step 3 - Decide: Based only on visible evidence, determine whether the target condition is present and visually verifiable in the image.
+- Answer y if the image clearly matches the target condition described by the rule
+- Answer n if the target condition is absent, contradicted, or not visually verifiable
+- Ignore background, lighting, camera angle, blur, and image quality unless the rule explicitly mentions them
+- Do not infer from file names, dataset knowledge, or prior expectations
 
 Output format:
-Analysis: [your observations]
+Observation: [relevant visible evidence]
+Reason: [why the evidence supports or rejects the rule]
 Answer: y or n"""
 
 
@@ -481,8 +495,39 @@ def normalize_classification(content):
     return normalize_y_n(content)
 
 
+def parse_classification_sections(content):
+    sections = {"observation": "", "reason": "", "answer": ""}
+    current_section = None
+    for raw_line in content.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        lower_line = line.lower()
+        matched_section = None
+        for section in sections:
+            prefix = f"{section}:"
+            if lower_line.startswith(prefix):
+                matched_section = section
+                sections[section] = line[len(prefix):].strip()
+                current_section = section
+                break
+        if matched_section is None and current_section:
+            sections[current_section] = f"{sections[current_section]} {line}".strip()
+    return sections
+
+
+def normalize_classification_result(content):
+    sections = parse_classification_sections(content)
+    return ClassificationResult(
+        answer=normalize_classification(content),
+        observation=sections["observation"],
+        reason=sections["reason"],
+        raw_response=content.strip(),
+    )
+
+
 def classify_image(rule, image_path, max_retries=3, retry_delay=2.0):
-    """Return y/n for whether an image satisfies a rule, without exposing the expected label."""
+    """Return answer and reason for whether an image satisfies a rule, without exposing the expected label."""
     encoded_image, mime_type = encode_image(image_path)
     prompt = build_classification_prompt(rule)
     messages = [
@@ -502,7 +547,7 @@ def classify_image(rule, image_path, max_retries=3, retry_delay=2.0):
     for attempt in range(max_retries):
         try:
             content = call_chat_completion(messages, max_tokens=4096)
-            return normalize_classification(content)
+            return normalize_classification_result(content)
         except (RuntimeError, ValueError, TimeoutError) as exc:
             last_error = exc
             if attempt < max_retries - 1:
@@ -677,7 +722,8 @@ def collect_evaluation_results(cases):
             f"[{index}/{total_cases}] checking {case.dataset}/{case.category}/{case.source}: {case.image_path}",
             flush=True,
         )
-        match = classify_image(case.rule, case.image_path)
+        classification = classify_image(case.rule, case.image_path)
+        match = None if classification is None else classification.answer
         prediction = None if match is None else case.expected if match == "y" else opposite_label(case.expected)
         is_correct = prediction == case.expected
         totals["total"] += 1
@@ -693,6 +739,9 @@ def collect_evaluation_results(cases):
                 "image_path": str(case.image_path),
                 "expected": case.expected,
                 "model_answer": match,
+                "model_observation": None if classification is None else classification.observation,
+                "model_reason": None if classification is None else classification.reason,
+                "model_response": None if classification is None else classification.raw_response,
                 "prediction": prediction,
                 "correct": is_correct,
                 "rule": case.rule,
@@ -780,6 +829,12 @@ def build_arg_parser():
         help="Dataset to evaluate. Defaults to all.",
     )
     parser.add_argument(
+        "--prompt-mode",
+        choices=["check", "classification"],
+        default="check",
+        help="Prompt to use for single-image checking. check prints only y/n; classification prints y/n with observation and reason. Defaults to check.",
+    )
+    parser.add_argument(
         "--verify",
         action="store_true",
         help="Verify the API with a text-only request before checking the image.",
@@ -824,6 +879,16 @@ def main():
         verify_api_connection()
 
     rule = read_rule(args.rules_file, args.rule_key)
+    if args.prompt_mode == "classification":
+        classification = classify_image(rule, image)
+        if classification is None:
+            print("error: all retries failed")
+            raise SystemExit(1)
+        print(f"Answer: {classification.answer}")
+        print(f"Observation: {classification.observation}")
+        print(f"Reason: {classification.reason}")
+        return
+
     answer = check_image(rule, image)
     if answer is None:
         print("error: all retries failed")
