@@ -202,7 +202,14 @@ def consolidate_rules(
     for attempt in range(3):
         try:
             _, merged = call_vision_api(BASE_URL, API_KEY, MODEL, [], prompt, TIMEOUT)
-            return merged.strip() if merged.strip() else None
+            merged = merged.strip()
+            if merged:
+                return merged
+            last_err = "empty consolidation response"
+            if attempt < 2:
+                delay = 3.0 * (2 ** attempt)
+                print(f"  [{category}] Consolidation returned empty response, retrying {attempt + 2}/3 after {delay:.0f}s")
+                time.sleep(delay)
         except Exception as e:
             last_err = e
             if attempt < 2:
@@ -210,7 +217,8 @@ def consolidate_rules(
                 print(f"  [{category}] Consolidation retry {attempt + 1}/3 after {delay:.0f}s: {e}")
                 time.sleep(delay)
     print(f"  [{category}] Consolidation failed after 3 attempts: {last_err}, falling back to longest rule")
-    return max(rules, key=len) if rules else None
+    non_empty_rules = [r for r in rules if r.strip()]
+    return max(non_empty_rules, key=len) if non_empty_rules else None
 
 
 # ========== CoEvoSkills: Verification Functions ==========
@@ -416,10 +424,18 @@ def generate_rule_for_category(
                     time.sleep(2.0)
                     continue
 
+                rule = rule.strip()
+                if not rule:
+                    print(f"  [{label}] Empty response", flush=True)
+                    if attempt < max_retries - 1:
+                        print(f"  [{label}] Retrying ({attempt + 2}/{max_retries})...", flush=True)
+                        time.sleep(2.0)
+                    continue
+
                 print(f"  [{label}] OK ({elapsed:.1f}s)", flush=True)
                 if VERBOSE:
                     print(f"  [{label}] Rule preview: {rule[:150]}...", flush=True)
-                candidates.append(rule.strip())
+                candidates.append(rule)
                 break
             except Exception as e:
                 print(f"  [{label}] FAIL: {e}", flush=True)
@@ -444,6 +460,16 @@ def generate_rule_for_category(
         final_rule = consolidate_rules(f"{dataset_name}/{category}", candidates)
     else:
         final_rule = candidates[0]
+
+    if not final_rule:
+        return {
+            "dataset": dataset_name,
+            "category": category,
+            "status": "error",
+            "error": "Rule generation returned empty output",
+            "rule": None,
+            "candidates_count": len(candidates),
+        }
 
     # CoEvoSkills: Verify and refine loop
     current_rule = final_rule
@@ -534,6 +560,9 @@ def write_rules_txt(results: list[dict], output_path: str) -> None:
     grouped: dict[str, list[dict]] = {}
     for r in results:
         if r["status"] != "success":
+            continue
+        rule = r.get("rule")
+        if not isinstance(rule, str) or not rule.strip():
             continue
         ds = r["dataset"]
         if ds not in grouped:

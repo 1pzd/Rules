@@ -3,448 +3,655 @@
     "dataset": "mvtec_ad",
     "category": "bottle",
     "status": "success",
-    "latency": 20.64,
-    "timestamp": "2026-07-01 17:35:44",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\bottle\\train\\good\\035.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\bottle\\train\\good\\115.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\bottle\\train\\good\\060.png"
+    "timestamp": "2026-07-06 15:34:21",
+    "rule": "The sample is a dark amber glass object featuring a perfect circular shape and a smooth, glossy surface finish with high reflectivity. The structure consists of multiple concentric ridges or steps radiating from the center, maintaining strict radial symmetry and uniform width throughout the circumference. These ridges frame a single, central, circular opening that is clear and unobstructed, with light reflecting continuously along the curved glass surfaces to highlight the consistent geometry.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "A single, circular object composed of dark amber glass, featuring a central, uniform dark aperture. This aperture is surrounded by a raised, glossy outer rim that displays a series of concentric, ribbed ridges or grooves, creating a distinct inner and outer ring structure with a smooth, reflective surface finish.",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "mvtec_ad",
     "category": "cable",
     "status": "success",
-    "latency": 29.01,
-    "timestamp": "2026-07-01 17:36:14",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\cable\\train\\good\\009.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\cable\\train\\good\\209.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\cable\\train\\good\\155.png"
+    "timestamp": "2026-07-06 15:40:08",
+    "rule": "The normal appearance is a circular cross-section containing exactly three insulated cores arranged in a tight triangular cluster. The cores are individually colored yellow-green with a stripe, solid blue, and solid grey-brown, each enclosing a dense bundle of numerous shiny copper strands. Logically, the cores are tightly packed in an equilateral triangular formation within the circular outer boundary, maintaining symmetry and close contact with adjacent neighbors. The surface finish of the insulation is matte, contrasted by the glossy metallic sheen of the exposed copper strands at the center of each core.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 005.png",
+          "Bad image accepted (false positive): 002.png"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.5,
+        "problems": [
+          "Good image rejected (false negative): 052.png",
+          "Good image rejected (false negative): 040.png"
+        ]
+      }
     ],
-    "rule": "The specimen features a circular cross-section comprising a dark, continuous outer sheath enclosing a thick, white, slightly textured dielectric layer. Within the white insulation, exactly three conductors are arranged in a triangular cluster, maintaining close proximity to one another. Each conductor is encased in a specific colored insulation: one green (with yellow markings), one blue, and one brown. The center of each conductor reveals a dense, radial bundle of numerous, parallel metallic copper strands.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "mvtec_ad",
     "category": "capsule",
     "status": "success",
-    "latency": 22.23,
-    "timestamp": "2026-07-01 17:36:37",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\capsule\\train\\good\\067.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\capsule\\train\\good\\010.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\capsule\\train\\good\\076.png"
+    "timestamp": "2026-07-06 15:47:27",
+    "rule": "The normal sample is a single, biconical, oblong softgel pharmaceutical capsule with rounded bi-lobed ends, oriented horizontally and exhibiting consistent bilateral symmetry with a smooth, glossy surface finish and a smooth, curved exterior. A sharp vertical division line separates the capsule into two equal halves forming a continuous longitudinal body, where the opaque black left half contains white printed text and a silver 'actavis' logo printed horizontally near the central junction, while the translucent amber-orange right half displays the white numerical text \"500\" centered on its surface.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Good image rejected (false negative): 003.png"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.5,
+        "problems": [
+          "Good image rejected (false negative): 015.png",
+          "Bad image accepted (false positive): 009.png"
+        ]
+      }
     ],
-    "rule": "A single intact capsule with a cylindrical body and rounded ends featuring a two-tone design divided vertically: the left half is solid black with a white \"actavis\" logo printed on it, and the right half is a translucent orange with the number \"500\" printed in white. The surface is glossy, and the color transition is a straight vertical line separating the two halves.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "mvtec_ad",
     "category": "carpet",
     "status": "success",
-    "latency": 58.96,
-    "timestamp": "2026-07-01 17:37:37",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\carpet\\train\\good\\077.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\carpet\\train\\good\\216.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\carpet\\train\\good\\028.png"
+    "timestamp": "2026-07-06 15:51:31",
+    "rule": "The sample features a continuous, uniform, flat woven textile surface characterized by a strict orthogonal grid pattern where vertical and horizontal threads align perpendicularly at regular, consistent intervals to form a highly symmetrical, repeating rectangular or square lattice. The weave consists of tightly interlaced fibers in varying shades of dark grey, light grey, brown, and taupe, featuring a consistent matte finish with a rough fibrous texture. This regular plain weave pattern ensures uniform thread density and even spacing across the entire visible area, maintaining perfect spatial alignment and symmetry without gaps, fraying, or misaligned threads, while presenting a stable structure with no distinct discrete components to count.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 013.png"
+        ]
+      }
     ],
-    "rule": "The sample is a flat, continuous woven textile surface featuring a tight, regular interlacing pattern of fine threads. The coloration is a consistent variegation of light grey/taupe and dark charcoal/maroon fibers. The texture is uniformly matte and fibrous with a strict geometric grid structure, where the interlacing of vertical and horizontal threads aligns perfectly to maintain consistent density and weave integrity across the entire area.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "mvtec_ad",
     "category": "grid",
     "status": "success",
-    "latency": 41.2,
-    "timestamp": "2026-07-01 17:38:20",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\grid\\train\\good\\111.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\grid\\train\\good\\218.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\grid\\train\\good\\002.png"
+    "timestamp": "2026-07-06 15:55:58",
+    "rule": "The surface exhibits a uniform, matte grey appearance characterized by a continuous, tessellated pattern of raised, dark-bordered diamond-shaped loops that enclose lighter, recessed centers. Logically, these identical geometric units are arranged in perfectly aligned diagonal rows with a consistent staggered offset, creating a seamless, honeycomb-like lattice structure without any gaps or misalignments. The quantity is infinite in nature, as the pattern consists of a repetitive, continuous mesh of these interlocking diamond cells that extends uniformly across the entire visible area.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "The sample is a uniform, continuous surface characterized by a repeating grid of raised, light-gray, elongated diamond-shaped (or slightly trapezoidal) cells. These cells are arranged in a precise, staggered matrix pattern where each row is offset half-a-width relative to the adjacent rows. Each cell is clearly defined by consistent, dark gray ridges or borders that separate the light-colored centers, creating a high-contrast, periodic texture. The surface maintains a smooth, matte finish on the raised cells with strict alignment and spacing, ensuring a regular, brick-lay geometry across the entire area.",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "mvtec_ad",
     "category": "hazelnut",
     "status": "success",
-    "latency": 15.48,
-    "timestamp": "2026-07-01 17:38:36",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\hazelnut\\train\\good\\055.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\hazelnut\\train\\good\\177.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\hazelnut\\train\\good\\147.png"
+    "timestamp": "2026-07-06 15:59:57",
+    "rule": "The sample consists of a single, whole hazelnut featuring an ovoid shape with a symmetrical silhouette and a uniform, hard shell in shades of tan to reddish-brown, presenting a smooth, matte surface free of",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "A single, solitary hazelnut characterized by a smooth, ovoid body with a reddish-brown shell marked by distinct longitudinal ridges running the length of the shell. The nut tapers to a sharp point at one end (the apex), while the opposite end (the base) is wider and features a dark, rough-textured band.",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "mvtec_ad",
     "category": "leather",
     "status": "success",
-    "latency": 32.88,
-    "timestamp": "2026-07-01 17:39:10",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\leather\\train\\good\\027.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\leather\\train\\good\\165.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\leather\\train\\good\\105.png"
+    "timestamp": "2026-07-06 16:05:39",
+    "rule": "The sample presents as a single, continuous, flat surface of solid medium-brown material featuring a uniform matte, non-glossy finish across the entire visible field, with absolute color homogeneity and no perceptible shading gradients, localized discoloration, or subtle hue variations. The surface texture must maintain a consistent pebbled embossed grain resembling leather with a uniform overall density, characterized by irregular, interconnected polygonal ridges and dimples with varying depths, incorporating a random network of intersecting fine lines, fine pores, and subtle raised patches that flow without distinct geometric alignment or repeating units. Crucially, the image must be strictly free of any internal seams, stitching, fold lines, join marks, distinct edges, logos, or discrete countable components, representing a flawless, unbroken field where no composite structure or manufacturing defect is visible, ensuring the image depicts a singular sheet of material without interruptions in texture, pigmentation, or surface continuity.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 003.png"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "The sample is a flat, continuous surface featuring a uniform medium-brown color with a consistent matte finish. The surface texture is defined by a random, irregular network of fine wrinkles and creases, creating a porous, grain-like appearance similar to leather across the entire visible area. The finish is non-glossy, and the color is even without discoloration or spots, covering the full frame with this specific topological pattern.",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "mvtec_ad",
     "category": "metal_nut",
     "status": "success",
-    "latency": 11.73,
-    "timestamp": "2026-07-01 17:39:23",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\metal_nut\\train\\good\\200.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\metal_nut\\train\\good\\107.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\metal_nut\\train\\good\\099.png"
+    "timestamp": "2026-07-06 16:14:02",
+    "rule": "The normal sample is a single metallic four-way cam lock nut characterized by a cross-shaped geometry with four rounded, integral flanges radiating symmetrically from a central hub. The surface presents a silver-grey zinc-plated finish with a textured appearance featuring visible concentric machining lines or striations on both the central bore face and the flange surfaces. The component maintains strict radial alignment, consistently displaying exactly four outward-facing lobes surrounding a central, circular-tapped opening.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 003.png"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.75,
+        "problems": [
+          "Good image rejected (false negative): 007.png"
+        ]
+      }
     ],
-    "rule": "The normal sample is a single, solid, four-pointed star-shaped metal fastener featuring a dull, galvanized (zinc) metallic finish with a characteristic greyish-green hue. The component exhibits radial symmetry with four distinct, roughly trapezoidal arms projecting equidistantly from a central hub. The entire object is opaque, and a single, circular through-hole is positioned precisely at the geometric center, surrounded by concentric ridges indicating internal threading.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "mvtec_ad",
     "category": "pill",
     "status": "success",
-    "latency": 11.74,
-    "timestamp": "2026-07-01 17:39:36",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\pill\\train\\good\\074.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\pill\\train\\good\\091.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\pill\\train\\good\\169.png"
+    "timestamp": "2026-07-06 16:19:05",
+    "rule": "The normal object is a single white, oval-shaped tablet with a matte finish, characterized by a uniform distribution of distinct red-brown speckles across its surface. It bears a debossed logo consisting of exactly two capital \"F\" letters aligned horizontally in the center, featuring symmetrical spacing and clear, sharp edges on the imprint.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 003.png"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 005.png"
+        ]
+      }
     ],
-    "rule": "A single, smooth, oval-shaped tablet with a white base color that is mottled with a distinct pattern of small, irregular red and brown speckles distributed across the surface. Centered on the face are two raised, rectangular capital letters 'F' embossed side-by-side, creating a symmetrical alphanumeric marking within the oblong geometry of the pill.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "mvtec_ad",
     "category": "screw",
     "status": "success",
-    "latency": 25.71,
-    "timestamp": "2026-07-01 17:40:02",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\screw\\train\\good\\269.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\screw\\train\\good\\289.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\screw\\train\\good\\032.png"
+    "timestamp": "2026-07-06 16:24:31",
+    "rule": "A single metallic screw is presented in each view, characterized by a flat, counter-sunk head with a central driving recess and a cylindrical, unthreaded shank that transitions into a fully threaded, pointed tip. The object exhibits a uniform grey metallic surface with a matte finish, featuring a helical thread pattern that wraps evenly around the lower conical section of the shaft. The geometry maintains precise symmetry, with the threads centered relative to the axis of the shank, leading to a sharp, conical point at the distal end.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 012.png",
+          "Bad image accepted (false positive): 015.png"
+        ]
+      }
     ],
-    "rule": "The normal sample consists of a single metallic screw featuring a flat, circular head with a countersunk rim and a recessed drive. The body includes a smooth, cylindrical shank that transitions seamlessly into a continuous series of uniform, deep helical threads. These threads spiral with a consistent pitch along the shaft and terminate at a sharp, conical point designed for self-drilling. The screw exhibits perfect axial symmetry, maintaining a uniform metallic grey surface finish throughout.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "mvtec_ad",
     "category": "tile",
     "status": "success",
-    "latency": 14.23,
-    "timestamp": "2026-07-01 17:40:18",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\tile\\train\\good\\204.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\tile\\train\\good\\105.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\tile\\train\\good\\067.png"
+    "timestamp": "2026-07-06 16:30:20",
+    "rule": "The normal appearance consists of a flat, matte surface with a light gray to off-white background featuring a uniform, granular, and mottled texture that is free of any subtle gradients, directional shifts, or visible digital banding. It exhibits a dense, random distribution of irregular dark gray to black inclusions ranging from fine specks and minute, near-circular distinct dots to larger amorphous patches or blotches, which must possess high contrast and clearly defined edges to distinguish sharply from the lighter matrix without blurring or fading. These markings are scattered uniformly and haphazardly across the entire visible area without specific alignment, symmetry, or repeating geometric arrangement, where the darker particles are deeply embedded within the lighter matrix to create a natural, speckled visual density that remains consistent in overall coverage but highly irregular in the individual arrangement of features, ensuring the texture avoids any artificial smoothing, low-resolution noise clusters, or repetitive pixel patterns associated with synthetic generation.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 003.png",
+          "Bad image accepted (false positive): 001.png"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "The normal sample features a light gray surface uniformly populated by a random distribution of dark gray to black speckles and irregular, amorphous blotches. These features vary in size from tiny dots to larger, elongated streaks and are scattered across the surface without specific geometric alignment or clustering.",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "mvtec_ad",
     "category": "toothbrush",
-    "status": "success",
-    "latency": 56.34,
-    "timestamp": "2026-07-01 17:43:02",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\toothbrush\\train\\good\\054.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\toothbrush\\train\\good\\016.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\toothbrush\\train\\good\\044.png"
-    ],
-    "rule": "",
-    "attempts": 3
+    "status": "error",
+    "error": "All rule generation attempts failed",
+    "rule": null
   },
   {
     "dataset": "mvtec_ad",
     "category": "transistor",
     "status": "success",
-    "latency": 16.72,
-    "timestamp": "2026-07-01 17:43:20",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\transistor\\train\\good\\102.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\transistor\\train\\good\\103.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\transistor\\train\\good\\107.png"
+    "timestamp": "2026-07-06 16:43:22",
+    "rule": "The normal sample features a single black rectangular plastic body with a matte finish and a centered circular \"T\" marking on the top surface, mounted centrally on a copper substrate. Three silver-colored metallic leads extend downward from the bottom of the body, curving gently outward to insert perfectly into three aligned circular plated holes located directly beneath the component. The leads maintain a consistent vertical alignment relative to each other and align symmetrically with the vertical columns of copper pads and holes on the substrate, ensuring the component is rigid and centered within the parallel copper traces.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 006.png"
+        ]
+      }
     ],
-    "rule": "The normal sample consists of a single black plastic semiconductor component with a trapezoidal or rounded rectangular body, featuring a circular 'T' logo embossed on the top face. Extending vertically downward from the bottom edge are exactly three silver metallic leads arranged in a spaced formation, terminating in slightly bent ends inserted into the substrate holes.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "mvtec_ad",
     "category": "wood",
     "status": "success",
-    "latency": 25.61,
-    "timestamp": "2026-07-01 17:43:46",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\wood\\train\\good\\198.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\wood\\train\\good\\160.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\wood\\train\\good\\190.png"
+    "timestamp": "2026-07-06 16:50:18",
+    "rule": "The normal appearance is a flat, continuous wooden surface with a smooth texture and a natural finish that exhibits a matte sheen. The defining characteristic is the prominent vertical grain pattern, consisting of parallel lines running consistently from top to bottom across the entire width of the material. The coloration features natural variations from light tan to medium reddish-brown, interspersed with fine, dark specks and organic fibers distributed randomly within the grain structure. Since the object is a single, unbroken sheet or panel rather than an assembly of parts, it comprises one continuous surface with no discrete components to count.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 004.png",
+          "Bad image accepted (false positive): 003.png"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 002.png",
+          "Bad image accepted (false positive): 001.png"
+        ]
+      }
     ],
-    "rule": "The normal sample is a flat, single-panel wood surface with a smooth, polished finish. It displays a continuous vertical grain pattern composed of parallel, wavy lines running predominantly from the top to the bottom of the surface. The color is a consistent warm tone, ranging between golden amber and medium reddish-brown, featuring natural variations in shading and subtle dark grain streaks that follow the vertical orientation without interruption.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "mvtec_ad",
     "category": "zipper",
     "status": "success",
-    "latency": 20.12,
-    "timestamp": "2026-07-01 17:44:07",
-    "images": [
-      "E:\\MvTeC\\mvtec_anomaly_detection\\zipper\\train\\good\\000.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\zipper\\train\\good\\152.png",
-      "E:\\MvTeC\\mvtec_anomaly_detection\\zipper\\train\\good\\002.png"
+    "timestamp": "2026-07-06 16:57:37",
+    "rule": "The normal sample features a black zipper assembly with a vertically oriented, interlocking chain of black teeth that is perfectly centered within a black fabric tape. The fabric tape displays a consistent, fine woven texture with a matte finish on both lateral sides of the zipper track. The alignment is strictly vertical and symmetrical, with the zipper chain dividing the fabric into two equal-width sections that run parallel to the track. The teeth are uniformly interlocked with no visible gaps or misalignment, and the entire object maintains a consistent monochromatic black coloration with a single continuous track visible in the frame.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 011.png"
+        ]
+      }
     ],
-    "rule": "The sample consists of a vertical strip of dark charcoal fabric exhibiting a fine, uniform cross-hatch woven texture. Running vertically down the center is a line of interlocking dark grey plastic zipper teeth that are aligned in a straight, continuous row. The teeth feature a smooth, slightly glossy finish that contrasts with the matte fabric, which extends evenly on both sides of the central zipper track.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "mvtec_loco",
     "category": "breakfast_box",
     "status": "success",
-    "latency": 27.99,
-    "timestamp": "2026-07-01 17:44:36",
-    "images": [
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\breakfast_box\\train\\good\\157.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\breakfast_box\\train\\good\\107.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\breakfast_box\\train\\good\\008.png"
+    "timestamp": "2026-07-06 17:03:11",
+    "rule": "The normal sample features a white, molded rectangular tray divided centrally by a partition into two distinct compartments, comprising a narrow left section and a wider right section. The left compartment contains exactly three whole fruits arranged in a vertical line, specifically two bright orange, textured tangerines and one reddish-brown, peacheskin-textured peach. The right compartment is densely packed with golden-brown baked oat granola clusters that dominate the upper area, while the lower section contains a mixture of pale yellow irregular dried banana slices or chips and tan and brown whole almond nuts scattered throughout.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "The sample consists of a white, rectangular divided tray containing exactly **three round fruits** in the narrow left compartment (typically comprising two orange citrus fruits and one dark red fruit) and a larger right compartment filled with **granola** in the upper section and a lower layer of mixed **sliced almonds and dried banana chips**.",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "mvtec_loco",
     "category": "juice_bottle",
     "status": "success",
-    "latency": 28.29,
-    "timestamp": "2026-07-01 17:45:06",
-    "images": [
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\juice_bottle\\train\\good\\313.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\juice_bottle\\train\\good\\165.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\juice_bottle\\train\\good\\177.png"
+    "timestamp": "2026-07-06 17:10:26",
+    "rule": "Standard samples feature a clear, rectangular bottle with rounded vertical sides and a screw-top neck, filled with opaque liquid up to the neck's lip. The bottle is affixed with exactly two gold-colored labels with rounded corners: the upper label is square and centered, displaying a fruit illustration (either red cherries or yellow bananas), while the lower label is rectangular and positioned directly beneath it, containing the black text \"100% Juice\". The entire assembly is vertically aligned with centering on the bottle's front face.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 065.png"
+        ]
+      }
     ],
-    "rule": "The normal sample is a single, small, transparent glass bottle equipped with a clear, ribbed screw cap, filled with opaque liquid to the top of the shoulder. On the front face, there are exactly two labels adhered vertically: a central, square-shaped label with a glossy yellow background featuring a cartoon illustration of a fruit (such as a banana or taro), and a lower, rectangular label near the base containing the printed text \"100% Juice\".",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "mvtec_loco",
     "category": "pushpins",
     "status": "success",
-    "latency": 53.94,
-    "timestamp": "2026-07-01 17:48:30",
-    "images": [
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\pushpins\\train\\good\\162.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\pushpins\\train\\good\\172.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\pushpins\\train\\good\\181.png"
+    "timestamp": "2026-07-06 17:19:16",
+    "rule": "The normal appearance is characterized by a clear plastic case divided into a 3x5 grid of compartments, each containing exactly one yellow push pin with a smooth, matte-finished cylindrical head and a slender silver metallic shaft. There are 15 pins total distributed individually into the separate compartments with random orientations, lacking any alignment or symmetry relative to the grid structure.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "The normal sample consists of a transparent rectangular plastic container divided into a 3x5 grid of 15 distinct compartments, housing exactly 15 yellow push pins with one pin located inside each compartment. Each pin features a uniform bright yellow cylindrical plastic head and a straight, silver-colored metallic wire shaft with a sharp point. The pins are loose within the clear plastic cells and exhibit random orientations and positions.",
-    "attempts": 3
+    "final_accuracy": 1.0
   },
   {
     "dataset": "mvtec_loco",
     "category": "screw_bag",
     "status": "success",
-    "latency": 25.42,
-    "timestamp": "2026-07-01 17:48:57",
-    "images": [
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\screw_bag\\train\\good\\151.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\screw_bag\\train\\good\\182.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\screw_bag\\train\\good\\192.png"
+    "timestamp": "2026-07-06 17:26:17",
+    "rule": "The normal appearance consists of a clear, transparent plastic zip-lock bag containing exactly six silver-colored metal hardware components arranged loosely on the interior surface. The set comprises two hexagonal head cap bolts with long threaded shafts, two hexagonal nuts, and two circular split rings. All metal parts exhibit a uniform, reflective chrome finish with defined hexagonal edges and threading, while the plastic bag is fully sealed along the right edge and remains flat and free of wrinkles or debris.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Good image rejected (false negative): 043.png",
+          "Bad image accepted (false positive): 030.png"
+        ]
+      }
     ],
-    "rule": "A normal sample consists of a clear, rectangular plastic self-sealing bag containing a hardware kit with exactly six silver, shiny metal components: specifically, two hex-head bolts, two hexagonal nuts, and two flat washers. The bag features a vertical zipper closure along the right edge printed with white text and symbols.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "mvtec_loco",
     "category": "splicing_connectors",
     "status": "success",
-    "latency": 53.61,
-    "timestamp": "2026-07-01 17:49:52",
-    "images": [
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\splicing_connectors\\train\\good\\023.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\splicing_connectors\\train\\good\\344.png",
-      "E:\\MvTeC\\mvtec_loco_anomaly_detection\\splicing_connectors\\train\\good\\018.png"
+    "timestamp": "2026-07-06 17:34:13",
+    "rule": "The normal appearance features a symmetrical, horizontally aligned flat cable assembly comprising two identical transparent rectangular plastic housings joined by a single flat, flexible, stranded insulated wire. Each transparent housing contains a vertical stack of bright orange rectangular contacts or retention clips, quantified as two, three, four, or five components per housing depending on the assembly size, aligned centrally within the block and oriented inward toward the connection point. The connecting wire is colored solid blue, matte orange matching the contacts, or yellow, and may display faint black printed markings, spanning the center horizontally in a straight line or gentle arc to link the two units which maintain bilateral symmetry with the connector blocks spaced equidistantly from the center.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 082.png"
+        ]
+      }
     ],
-    "rule": "The sample consists of a symmetrical assembly featuring two identical transparent plastic connectors located at opposite extremities, bridged by a single solid cylindrical wire running centrally through both housings. Each connector face presents a vertical stack of bright orange, rectangular insulating blocks flush-mounted directly behind the clear plastic surface. The wire is aligned with the central axis of the connectors, and the overall structure exhibits bilateral symmetry. The orange insulating blocks are arranged in discrete vertical segments (varying in height to accommodate 2, 3, or 5 contacts depending on the specific model), while the plastic housing is glossy and clear.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "visa",
     "category": "candle",
     "status": "success",
-    "latency": 20.93,
-    "timestamp": "2026-07-01 17:50:13",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\candle\\Data\\Images\\Normal\\0682.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\candle\\Data\\Images\\Normal\\0595.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\candle\\Data\\Images\\Normal\\0805.JPG"
+    "timestamp": "2026-07-06 17:40:06",
+    "rule": "The normal sample consists of four identical, circular, creamy-white wax candles arranged in a symmetrical 2x2 grid. Each disc features a uniform matte surface texture and a central vertical wick protruding from a slight depression, characterized by a thin stem and a small loop at the apex. The wicks are perfectly centered within the circular boundary of each unit, maintaining consistent geometry and spacing across all four objects.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 002.JPG",
+          "Bad image accepted (false positive): 010.JPG"
+        ]
+      }
     ],
-    "rule": "A normal sample consists of exactly four identical tea light candles. Each candle is a flat, circular disc with a smooth, matte, cream-colored wax surface and a thin, shiny metallic rim around the perimeter. Centered on the top face of each disc is a small, shallow central indentation, typically U-shaped or hook-shaped. All four candles are uniform in size, color, and surface finish.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "visa",
     "category": "capsules",
     "status": "success",
-    "latency": 57.28,
-    "timestamp": "2026-07-01 17:51:12",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\capsules\\Data\\Images\\Normal\\497.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\capsules\\Data\\Images\\Normal\\501.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\capsules\\Data\\Images\\Normal\\337.JPG"
+    "timestamp": "2026-07-06 17:47:59",
+    "rule": "The normal sample consists of multiple translucent, vibrant green piloid objects featuring a smooth, glossy surface finish and rounded ends, often exhibiting a subtle gradient of darkness towards one terminal end. These objects are arranged in a random, scattered distribution with no fixed spatial alignment, symmetry, or organized pattern, with each unit oriented independently. The quantity includes approximately fifteen to twenty discrete, separate objects visible in the frame.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 032.JPG",
+          "Bad image accepted (false positive): 057.JPG"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 080.JPG",
+          "Bad image accepted (false positive): 031.JPG"
+        ]
+      }
     ],
-    "rule": "A normal sample consists of 22 individual, elongated capsule-shaped objects with rounded ends. These items are translucent green with a glossy, smooth surface finish. Each object features a distinct color gradient, transitioning from a bright lime green at the tips to a darker olive-brown shade in the central band. The objects are arranged in a scattered layout with random orientations.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "visa",
     "category": "cashew",
     "status": "success",
-    "latency": 14.7,
-    "timestamp": "2026-07-01 17:51:28",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\cashew\\Data\\Images\\Normal\\010.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\cashew\\Data\\Images\\Normal\\305.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\cashew\\Data\\Images\\Normal\\133.JPG"
+    "timestamp": "2026-07-06 17:54:00",
+    "rule": "Each normal sample consists of exactly one isolated, cashew-shaped biscuit per frame, characterized by a flat, rigid structure with a smooth, matte surface finish displaying a uniform pale yellow to cream or pale golden-yellow color. The geometry presents a kidney-bean-like or crescent silhouette defined by two distinct rounded lobes tapering gently into a central, deep U-shaped cleft or connecting section, resulting in a roughly symmetrical, curved profile with well-defined edges. The object must appear as a single complete unit without any visible blemishes, irregularities, interruptions, cracks, printed patterns, or glossy glaze, maintaining consistent proportions and a solid, continuous finish across the entire product.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 044.JPG"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.75,
+        "problems": [
+          "Good image rejected (false negative): 024.JPG"
+        ]
+      }
     ],
-    "rule": "A single, intact object with a smooth, C-shaped or kidney-like profile featuring two symmetrical, rounded lobes. The surface should be uniform and matte, displaying a consistent pale yellow-beige coloration without any visible cracks, chips, holes, or discoloration.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "visa",
     "category": "chewinggum",
     "status": "success",
-    "latency": 14.25,
-    "timestamp": "2026-07-01 17:52:43",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\chewinggum\\Data\\Images\\Normal\\288.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\chewinggum\\Data\\Images\\Normal\\445.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\chewinggum\\Data\\Images\\Normal\\175.JPG"
+    "timestamp": "2026-07-06 17:58:30",
+    "rule": "The normal sample consists of a single, solid white component shaped as a rectangle with significantly rounded corners and slightly soft beveled edges along the perimeter. The surface is smooth and uniform in finish, exhibiting a consistent satin sheen without any visible texture, pits, or discoloration. Spatially, the object presents as a symmetrical monolithic piece with no visible seams, holes, or secondary attached parts, forming a seamless geometric form.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "A normal sample consists of exactly one single, solid block with a rectangular shape and smoothly rounded corners on all four edges. The object features a uniform off-white or creamy white color and a smooth, compact surface finish that is free from visible cracks, discoloration, or foreign matter. The block maintains consistent dimensions and symmetry, appearing as a cohesive, unbroken mass without any protrusions, indentations, or internal voids.",
-    "attempts": 2
+    "final_accuracy": 1.0
   },
   {
     "dataset": "visa",
     "category": "fryum",
     "status": "success",
-    "latency": 11.99,
-    "timestamp": "2026-07-01 17:52:56",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\fryum\\Data\\Images\\Normal\\425.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\fryum\\Data\\Images\\Normal\\430.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\fryum\\Data\\Images\\Normal\\001.JPG"
+    "timestamp": "2026-07-06 18:04:38",
+    "rule": "The object is a single, circular, flat component manufactured from a semi-translucent, pale amber or cream-colored material with a smooth surface finish. The geometry features a central hub containing a small, circular through-hole, from which six thick, radial spokes extend evenly outward to terminate at the outer rim. This layout creates six symmetrical, triangular voids radiating from the center, forming a perfectly balanced, wheel-like structure with six-fold rotational symmetry.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 023.JPG"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.5,
+        "problems": [
+          "Good image rejected (false negative): 097.JPG",
+          "Bad image accepted (false positive): 099.JPG"
+        ]
+      }
     ],
-    "rule": "A single, circular disc made of pale orange, semi-translucent plastic with a smooth, uniform surface finish. The object features a single small central hole with exactly six radial spokes of consistent width extending from the center to the outer rim, creating a symmetrical wheel-like pattern with six distinct trapezoidal voids. The outer edge is a continuous, unbroken circle.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "visa",
     "category": "macaroni1",
     "status": "success",
-    "latency": 14.96,
-    "timestamp": "2026-07-01 17:53:12",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\macaroni1\\Data\\Images\\Normal\\0784.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\macaroni1\\Data\\Images\\Normal\\0161.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\macaroni1\\Data\\Images\\Normal\\0863.JPG"
+    "timestamp": "2026-07-06 18:12:27",
+    "rule": "The valid sample consists of exactly four identical pale yellow semi-circular pasta shells (conchiglie) arranged in a precise 2x2 grid formation with uniform spacing and zero deviation in alignment. Each shell must feature a smooth matte texture with distinct concentric ridges running continuously along the curved arc and be oriented strictly uniformly with its rounded base resting flat on the bottom and its two hollow openings facing directly upward without any tilt or shadow obscuration. All four units must maintain consistent dimensions and curvature, presenting a perfectly symmetrical arrangement without any missing fragments, visible deformities on the rim, or irregularities in placement that obscure the standard configuration.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 077.JPG",
+          "Bad image accepted (false positive): 055.JPG"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.75,
+        "problems": [
+          "Bad image accepted (false positive): 062.JPG"
+        ]
+      }
     ],
-    "rule": "The normal sample comprises exactly four individual, uniform pieces of yellow-orange, C-shaped pasta. Each piece is a solid, hollow extrusion with a semi-circular cross-section and a matte, opaque finish. The exterior curved surface is defined by consistent concentric ridges. The pieces are structurally intact with no visible breakage or deformities.",
-    "attempts": 1
+    "final_accuracy": 0.75
   },
   {
     "dataset": "visa",
     "category": "macaroni2",
     "status": "success",
-    "latency": 17.62,
-    "timestamp": "2026-07-01 17:53:31",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\macaroni2\\Data\\Images\\Normal\\0212.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\macaroni2\\Data\\Images\\Normal\\0307.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\macaroni2\\Data\\Images\\Normal\\0197.JPG"
+    "timestamp": "2026-07-06 18:17:11",
+    "rule": "The normal sample comprises four discrete, hollow C-shaped components with a uniform pale yellow color and a smooth surface finish featuring distinct concentric ridges along the curved exterior. Each piece exhibits a consistent horseshoe geometry with a hollow interior and flat, rough cut edges along the terminations. The four objects are spatially separated and individually aligned, maintaining consistent dimensions and curvature without overlapping or adhering to one another.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 038.JPG",
+          "Bad image accepted (false positive): 026.JPG"
+        ]
+      }
     ],
-    "rule": "The normal sample comprises exactly four distinct objects, each being a hollow, semi-circular pasta piece (conchiglie style). These pieces are a uniform pale yellow color with a smooth, matte surface finish. Each object is characterized by a consistent curvature with sharp, defined cut edges along the open arc and features a pattern of concentric ridges running longitudinally along the outer curve. The pieces are uniform in size and shape, differing only in orientation.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "visa",
     "category": "pcb1",
     "status": "success",
-    "latency": 18.29,
-    "timestamp": "2026-07-01 17:53:50",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb1\\Data\\Images\\Normal\\0798.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb1\\Data\\Images\\Normal\\0882.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb1\\Data\\Images\\Normal\\0139.JPG"
+    "timestamp": "2026-07-06 18:24:24",
+    "rule": "The normal sample is a blue rectangular printed circuit board featuring two cylindrical ultrasonic transducers with silver metallic rims and black mesh gratings positioned symmetrically on the left and right sides. Centered at the bottom of the board is a single oblong silver metallic crystal oscillator, while four straight silver metal pins are aligned linearly along the opposite edge. The surface features white silkscreen text including corner markers and labels for the four pins, with mounting holes located at each of the four corners, maintaining a consistent geometric symmetry across the component layout.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "The normal sample is a rectangular blue printed circuit board featuring two large circular ultrasonic transducers positioned side-by-side along the longer edges, each equipped with a silver metallic ring and a black mesh face. A single rectangular silver piezoelectric crystal is located centrally between the two transducers. Four metallic pins extend from one of the shorter edges, aligned near white silkscreen labels (VCC, Trig, Echo, Gnd) and the white text identifier \"HC-SR04\". The board includes four circular mounting holes located symmetrically at each of the four corners, along with corner markers \"T\" and \"R\" near the transducers.",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "visa",
     "category": "pcb2",
     "status": "success",
-    "latency": 39.8,
-    "timestamp": "2026-07-01 17:54:31",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb2\\Data\\Images\\Normal\\0984.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb2\\Data\\Images\\Normal\\0878.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb2\\Data\\Images\\Normal\\0307.JPG"
+    "timestamp": "2026-07-06 18:42:13",
+    "rule": "The normal appearance consists of a rectangular blue PCB with white silkscreen text including \"HC-SR04\" and component identifiers. The board features one 4-pin male header extending perpendicularly from the top edge, three black integrated circuits arranged horizontally (one 14-pin on the left, one 8-pin in the center, and one 14-pin on the right), ten 0805-sized surface-mount devices organized in two vertical columns of five flanking the central IC, and two 0402-sized components near the central chip. Four mounting holes are located at the four corners of the board. Logic requires that all components are symmetrically aligned along the board's vertical centerline and horizontal axis, with solder joints lying flat against the substrate and header pins standing upright and parallel.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Good image rejected (false negative): 0871.JPG",
+          "Bad image accepted (false positive): 005.JPG"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image check failed (API error): 056.JPG",
+          "Bad image accepted (false positive): 071.JPG"
+        ]
+      }
     ],
-    "rule": "A normal sample is a rectangular blue printed circuit board (PCB) with white silkscreen labeling and four mounting holes positioned at the four corners. It features exactly one 4-pin male header aligned centrally along the top edge. Located directly below the header is a central black integrated circuit, which is flanked horizontally by two additional black integrated circuits—one on the far right side and one on the far left side. Two small silver circular components are situated near the bottom edge, centered between the left and right sections, while multiple small rectangular passive components are arranged in vertical groups between the main integrated circuits.",
-    "attempts": 1
+    "final_accuracy": 0.5
   },
   {
     "dataset": "visa",
     "category": "pcb3",
     "status": "success",
-    "latency": 47.02,
-    "timestamp": "2026-07-01 17:56:19",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb3\\Data\\Images\\Normal\\0595.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb3\\Data\\Images\\Normal\\0166.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb3\\Data\\Images\\Normal\\0302.JPG"
+    "timestamp": "2026-07-06 18:53:52",
+    "rule": "The normal appearance is a rectangular blue PCB featuring white silk screening text and schematic markings. On the left side, a single black 3-pin female header with three parallel metal pins protruding vertically is mounted. Adjacent to this header is a circular mounting hole. In the lower-central area, a blue square potentiometer with a central cross-shaped slot is installed. Directly above the potentiometer is a black dual-inline-package (DIP) IC labeled \"LM393\" with visible silver pins. To the right, two phototransistors—one transparent and one opaque black—are mounted vertically parallel to each other along the board edge. Surrounding the central components are four small surface-mount resistors (two labeled \"103\", two labeled \"101\") and three small surface-mount capacitors arranged in organized rows. The spatial logic maintains strict alignment with all component edges parallel to the PCB boundaries and the phototransistors flush against the right side.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.25,
+        "problems": [
+          "Good image rejected (false negative): 0070.JPG",
+          "Good image check failed (API error): 0292.JPG",
+          "Bad image accepted (false positive): 072.JPG"
+        ]
+      }
     ],
-    "rule": "A normal sample is a rectangular blue printed circuit board (PCB) module with white silkscreen text. On the far left edge, there are exactly three parallel male header pins arranged vertically, adjacent to a single circular mounting hole. Centrally located is a black 8-pin integrated circuit chip, positioned above a square light blue potentiometer featuring a white cross-shaped adjustment slot. On the far right edge, there are exactly two vertically aligned LED packages within white frames: a transparent clear LED on top and a black LED on the bottom. The board is populated with multiple small surface-mount resistors labeled '101', '102', and '103' arranged in vertical columns on either side of the central IC, along with two small horizontal SMD components near the bottom right corner.",
-    "attempts": 2
+    "final_accuracy": 0.25
   },
   {
     "dataset": "visa",
     "category": "pcb4",
     "status": "success",
-    "latency": 41.15,
-    "timestamp": "2026-07-01 17:57:01",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb4\\Data\\Images\\Normal\\0485.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb4\\Data\\Images\\Normal\\0316.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pcb4\\Data\\Images\\Normal\\0798.JPG"
+    "timestamp": "2026-07-06 19:00:02",
+    "rule": "The normal sample consists of a rectangular blue PCB featuring a silver USB Type-A female connector on the left edge and four silver corner mounting terminals with central holes. The board is populated with a central black IC labeled \"TC4056A\" surrounded by a symmetrical arrangement of surface-mount components, including a black resistor labeled \"R400\", four silver capacitors labeled \"102\" arranged in a 2x2 grid near the top right, a horizontal brown capacitor, a vertical brown terminal resistor, and a small silver component labeled \"221\", all enclosed in white safety outline stencils. White silkscreen text marking the input and battery connections (\"IN+\", \"IN-\", \"BAT+\", \"BAT-\") is printed near the respective pads, clearly defining the spatial layout of the ports relative to the central chip.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 1.0,
+        "problems": []
+      }
     ],
-    "rule": "A rectangular blue PCB with a white border features a metallic USB Type-B connector mounted vertically on the left edge, adjacent to white silkscreen text labeling the input terminals (IN+, IN-) and the model number (HW-168). The board contains one black 8-pin integrated circuit labeled \"TC4056A\" positioned in the lower right quadrant, surrounded by multiple small surface-mount resistors (including values R400, 102, and 122). Four silver circular mounting pads with holes are located at the four corners, labeled with the battery terminals (BAT+, BAT-).",
-    "attempts": 1
+    "final_accuracy": 1.0
   },
   {
     "dataset": "visa",
     "category": "pipe_fryum",
     "status": "success",
-    "latency": 13.74,
-    "timestamp": "2026-07-01 17:57:16",
-    "images": [
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pipe_fryum\\Data\\Images\\Normal\\132.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pipe_fryum\\Data\\Images\\Normal\\071.JPG",
-      "E:\\MvTeC\\VisA_20220922\\VisA_20220922\\pipe_fryum\\Data\\Images\\Normal\\174.JPG"
+    "timestamp": "2026-07-06 19:06:37",
+    "rule": "The valid samples must depict a single, isolated rectangular block in each view with a strictly uniform off-white or cream color, free from any discoloration, stains, or lighting-induced shadows. The top surface must feature a continuous texture of small, evenly distributed pits or bumps without gaps, scratches, debris, or irregularities, while the vertical sides must remain smooth, straight-edged, and slightly rounded at the corners without chipping or warping. The object must maintain strict geometric symmetry with uniform thickness throughout, possessing a strictly matte, non-reflective finish that excludes all specular highlights, fingerprints, or gloss, ensuring the image clearly isolates the object from the background without any stray marks, dust, occlusion, or secondary elements.",
+    "candidates_count": 3,
+    "verification": [
+      {
+        "iteration": 1,
+        "accuracy": 0.5,
+        "problems": [
+          "Bad image accepted (false positive): 014.JPG",
+          "Bad image accepted (false positive): 051.JPG"
+        ]
+      },
+      {
+        "iteration": 2,
+        "accuracy": 0.75,
+        "problems": [
+          "Good image rejected (false negative): 321.JPG"
+        ]
+      }
     ],
-    "rule": "The normal sample consists of exactly one solid, rectangular block with a uniform off-white or pale beige coloration. The surface exhibits a consistent, fine-grained or speckled texture that appears matte and non-glossy. The object is a monolithic piece with four straight edges and generally planar faces, forming a complete rectangular prism shape with no visible holes, voids, or additional components.",
-    "attempts": 1
+    "final_accuracy": 0.75
   }
 ]
